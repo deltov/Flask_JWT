@@ -11,16 +11,14 @@ from flask_jwt_extended import JWTManager
                                                                                                                                        
 app = Flask(__name__)                                                                                                                  
                                                                                                                                        
-# Configuration du module JWT
-app.config["JWT_SECRET_KEY"] = "Ma_clé_secrete"  # Ma clée privée
+app.config["JWT_SECRET_KEY"] = "Ma_clé_secrete"  
 jwt = JWTManager(app)
 
 @app.route('/')
 def hello_world():
     return render_template('accueil.html')
 
-# Création d'une route qui vérifie l'utilisateur et retour un Jeton JWT si ok.
-# La fonction create_access_token() est utilisée pour générer un jeton JWT.
+
 @app.route("/login", methods=["POST"])
 def login():
     username = request.json.get("username", None)
@@ -32,7 +30,7 @@ def login():
     return jsonify(access_token=access_token)
 
 
-# Route protégée par un jeton valide
+
 @app.route("/protected", methods=["GET"])
 @jwt_required()
 def protected():
