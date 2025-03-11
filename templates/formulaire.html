@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Connexion</title>
+</head>
+<body>
+    <h1>Formulaire de Connexion</h1>
+    <form method="POST" action="/login">
+        <label for="username">Nom d'utilisateur :</label>
+        <input type="text" id="username" name="username" required>
+        <br>
+        <label for="password">Mot de passe :</label>
+        <input type="password" id="password" name="password" required>
+        <br>
+        <button type="submit">Se connecter</button>
+    </form>
+
+    <br>
+
+    <h3>Test de la route protégée</h3>
+    <button onclick="fetchProtectedRoute()">Accéder à /protected</button>
+
+    <script>
+        function fetchProtectedRoute() {
+            fetch('/protected')
+                .then(response => response.json())
+                .then(data => alert(JSON.stringify(data)))
+                .catch(err => alert("Erreur : " + err));
+        }
+    </script>
+</body>
+</html>
